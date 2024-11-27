@@ -25,16 +25,89 @@ mutate(across(where(is.character), as.factor))
 A new  preventative vaccine (covid921) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups by gender( guys and gals), drug use, and sexual orientation. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
 
 ## Males
-$H_0$:
 
-$H_A$:
+Question: How effective is the vaccine on males?
 
+## Methods
+
+$H_0$:The vaccine is not effective in preventing COVID19 in males.
+
+$H_A$:The vaccine is effective in preventing COVID19 in males.
+
+Infected ~ Sex
+Categorical ~ Categorical
+We will use the helper file Cat~Cat
+
+## Graphical
+```{r}
+Male <- FinalDat[FinalDat$sex=="M",]
+```
+
+```{r}
+barchartGC(~infected + treatment,data=Male)
+barchartGC(~infected + treatment,data=Male, type="percent")
+
+```
+
+The bar chart shows that males who received the vaccine are less likely to contact covid19.
+
+## Numerical
+```{r}
+table1 <- xtabs(~infected + treatment, data=Male)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The numerical data shows that within the placebo group 73.80% of males got infected with covid19, while of the males who received the vaccine only 26.20% contracted covid19. Therefore this indicates that the males who received the vaccine significantly reduced the risk of contracting covid19.
+
+## Inferential
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The Chi-square p-value is 0.00000000000000022. Fisher exact test shows the p-value is 0.00000000000000022 which is lower than 0.05 so we reject the null hypothesis.
+
+## Conclusion
+
+Regarding the males, the bar chart shows you are less likely to contract covid19 if you received the vaccine. The numerical data shows that within the placebo group 73.80% contracted covid19, while the males who received the vaccine significantly reduced the risk of contracting lower than 0.05 so we reject the null hypothesis.
 
 ## Females
-$H_0$:
 
-$H_A$:
+Question: How effective is the vaccine on females?
 
+##Methods
+$H_0$:the vaccine is not effective in preventing covid19 in females.
+
+$H_A$:The vaccine is effective in preventing covid19 in females.
+
+Infected ~ Sex
+categorcal ~ categorical
+We will use a helper file Cat~Cat
+
+## Graphical
+```{r}
+Female <- FinalDat[FinalDat$sex=="F",]
+```
+
+```{r}
+barchartGC(~infected + treatment,data=Female)
+barchartGC(~infected + treatment,data=Female, type="percent")
+
+```
+
+The bar chart shows that females that received the vaccine are less likely to contract covid19.
+
+## Numerical
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=Female)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The numerical data shows that within the placebo group 64.93% of females got infected with covid19, while of the females who received the vaccine only received the vaccine
 
 ## LGBTQ
 $H_0$:
