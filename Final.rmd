@@ -107,19 +107,120 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-The numerical data shows that within the placebo group 64.93% of females got infected with covid19, while of the females who received the vaccine only received the vaccine
+The numerical data shows that within the placebo group 64.93% of females got infected with covid19, while of the females who received the vaccine only 35.07% contracted covid19. Therefore this indicates that the females who received the vaccin significantly reduced the risk of contracting covid19.
+
+## Inferential
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The chi-square test shows the p-value is 0.00000001914 and the Fisher exact test shows the p-value is 0.00000001914 which is lower than 0.05, so we reject the null hypothesis.
+
+## Conclusion
+
+The bar chart shows that females that received the vaccine are less likely o contract covid19. The numerical data shows that within the placebo group 64.93% of females go infected with covid19. Therefore this indicates that the females who recived the vaccine significantly reduced the risk of contracting covid19. The Fisher exact test shows the p-value is 0.00000001914 which is lower than 0.05 so we reject the null hypothesis.
 
 ## LGBTQ
-$H_0$:
 
-$H_A$:
+Questions: How effective is the vaccine on LGBTQ?
 
+## Methods
 
+$H_0$:The vaccine is not effective in preventing covid 19 in LGBTQ.
+
+$H_A$:The vaccine is effective in preventing covid19 in LGBTQ.
+
+Infected ~ LGBTQ(gay)
+Categorical ~ categorical
+We will use a helper file Cat~Cat
+
+## Graphial
+
+```{r}
+LGBTQ <- FinalDat[FinalDat$LGBTQ=="gay",]
+```
+
+```{r}
+barchartGC(~infected + treatment,data=LGBTQ)
+barchartGC(~infected + treatment,data=LGBTQ, type="percent")
+
+```
+
+The bar chart shows that members of the LGBTQ community are less likely to contract covid19, if they received the vaccine.
+
+## Numerical
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=LGBTQ)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The numerical data shows that within the placebo group 80% of the LGBTQ community members got infected with covid19, while of the LGBTQ community members who recieved the vaccine only 20% contracted covid19.
+
+## Inferential  
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+the chi-square test p-value is 0.0000002266 and the Fisher exact test shows the p-value is 0.0000007269 which is lower than 0.05 so we reject the null hypothesis.
+
+## Conculsion
+
+The bar chart shows that members of the LGBTQ community are less likely to contract covid19 if they received the vaccine. The numerical data shows that within the placebo group 80% of the LGBTQ community members got infected with covid19, while of the LGBTQ community members who received the vaccine only 20% contracted covid19. The Fisher exact test shows the p-value is 0.0000007269 which is lower than 0.05, so we reject the null hypothesis.
 
 ## Druggies
-$H_0$:
 
-$H_A$:
+Question: How effective is the vaccine on Druggies?
 
+## Methods
+
+$H_0$:The vaccine is not effective in preventing covid19 in Druggies.
+
+$H_A$:The vaccine is effective in preventing covid19 in Druggies.
+
+## Graphical
+
+```{r}
+DrugUser <- FinalDat[FinalDat$DrugUser=="yes",]
+```
+
+
+```{r}
+barchartGC(~infected + treatment,data=DrugUser)
+barchartGC(~infected + treatment,data=DrugUser, type="percent")
+
+```
+
+According to the bar chart you are more likely to get covid19 if recieve the vaccine as a drug user.
+
+## Numerical
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=DrugUser)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The numerical data shows that that within the placebo group 8.33% of individuals got infected with covid19. While in the vaccine group 91.67% contracted covid19. This indicates that receiving the vaccine as a drug user significantly increases the risk of contracted covid19.
+
+## Inferential  
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The chi-square test shows a p-value of 0.0000000001414 data and the Fisher exact test shows that the p-value is 0.000000000003261 which is significantly lower than 0.05 which means that we reject the null hypothesis.
+
+## Conclusion
+
+The bar chart shows that yu are far more likely to contract covi19 if you did receive the vaccine as a DrugUser. The numerical data shows that within the placebo group 91.67% contracted covid19. This indicates that receiving the vaccine as a DrugUser significantly increases the risk of contracting covid19. The inferential data shows a chi-square p-value of 0.0000000001414, and the dtat includes a Fisher exact test showing that the p-value is 0.000000000003261 which is significantly lower than 0.05 which means we reject the null hypothesis. As a DrugUser, you are more likely to contract covid19 if you received the vaccine.
 
 # Overall Results and Conclusions
